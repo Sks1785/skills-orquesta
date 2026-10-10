@@ -61,7 +61,39 @@ Things to know:
 - The hook only runs an `echo`. On Windows, Claude Code uses Git Bash when it is installed (tested: one clean line). With the PowerShell fallback the same text prints one word per line, which is still readable.
 - The hook adds one short reminder at session start. To remove it, edit or delete `plugin/hooks/hooks.json`. To uninstall: `claude plugin uninstall orquesta@skills-orquesta`.
 - `plugin/skills/` is a copy of `es/` (same text; only the line endings differ). If you change one, change the other.
-- Tested on Windows 11 with Claude Code 2.1.278: `claude plugin validate` passes, the session-start hook fires and both skills load (version 0.1.0 also had a per-prompt hook; it was removed in 0.1.1). It has only been tried on one real task.
+- Tested on Windows 11 with Claude Code 2.1.278: `claude plugin validate` passes, the session-start hook fires and both skills load (version 0.1.0 also had a per-prompt hook; it was removed in 0.1.1; 0.2.0 only changes the skill text). It has only been tried on one real task.
+
+## What's new in 0.2.0
+- **Trivial tasks:** `director` and `verificar` no longer build the full apparatus to change a text or one line (one real check and a one-line conclusion).
+- **Reproduce before editing:** `verificar` requires running the failing case and showing its output before touching anything, then repeating it afterwards.
+- **Compact report:** five mandatory lines (criterion, before the change, checks, NOT VERIFIED and conclusion), at most 15 lines.
+- **Director quick mode:** no notebook or researchers, but with a mandatory minimum: query date, URLs actually opened, a CONFIRMED / INFERRED / NOT VERIFIED block, and prices or versions with a date.
+- **Source currency:** something counts as CONFIRMED only if it comes from a page you opened, with its date and version, and that version matches the user's. An old, other-version or undated source goes to INFERRED as "possibly outdated".
+
+**What was measured (and what was not):** in a small blinded comparison (one run per case, one model, one judge) this version scored 44 out of 50 against 37 for 0.1.1 on two version-sensitive queries (Home Assistant and Tailscale on a Synology), at the same token cost. On a trivial task it scored 20 against 16. This is a signal, not proof: it has not been measured with other models or on long tasks, and models sometimes follow the dating rule only partly. The skills are in Spanish.
+
+## Update
+```bash
+claude plugin marketplace update skills-orquesta
+claude plugin update orquesta@skills-orquesta
+```
+Then open a new session (or `/reload-plugins`) and check that `/orquesta:director` appears.
+
+## Optional: use it without typing `/director`
+The plugin only reminds Claude at session start; it does not force the skills to run. To make Claude use them more reliably, paste this (in Spanish, like the skills) into your global `CLAUDE.md` (`~/.claude/CLAUDE.md`). It has not yet been measured in real sessions:
+
+```
+## Regla orquesta (obligatoria)
+
+En tareas técnicas (apps, Docker, servidores, cámaras, red, IA, automatización):
+
+1. Antes de investigar o planificar, invoca la skill `orquesta:director` con la herramienta Skill. No lo hagas en cambios triviales (un texto, un nombre, una línea sin datos externos): en ese caso haz el cambio y una comprobación real.
+2. Antes de decir "listo", "arreglado" o "terminado", invoca la skill `orquesta:verificar`.
+3. Si hay un fallo concreto, reprodúcelo y muestra su salida ANTES de editar nada; repite el mismo caso después.
+4. En consultas con búsqueda web, escribe la fecha de la consulta y un bloque final CONFIRMADO / INFERIDO / NO VERIFICADO. Solo es CONFIRMADO lo que viene de una página que abriste, con su fecha y versión, y que encaja con mi versión. Si la fuente es antigua, de otra versión o sin fecha, va a INFERIDO como "posiblemente desactualizado". Precios, stock y versiones llevan fecha y "revalidar antes de comprar o instalar".
+5. Informe corto (máximo 15 líneas): criterio de éxito, antes del cambio, comprobaciones [OK]/[FALLO] con el comando, qué NO verificaste y conclusión (VERIFICADO / PARCIAL / NO VERIFICADO).
+6. Sin evidencia, di NO VERIFICADO. Nunca "debería funcionar".
+```
 
 ## Use
 - Start a task with `/director`, or let Claude activate it from its description.
