@@ -15,27 +15,25 @@ Si no puedes ejecutar algo, dilo y marca el punto como NO VERIFICADO.
 1. **Identificar el proyecto y su perfil.** Decide cuál aplica (ver "Perfiles" abajo). Si no está claro, pregunta una sola vez.
 2. **Leer antes de afirmar.** Abre los archivos y la configuración reales afectados. No supongas su contenido. Si vas a decir "el fallo está en X", primero muestra que leíste X.
 3. **Definir el criterio de éxito.** Escribe en una o dos líneas qué significa "funciona" para este cambio (ej.: "la app compila y la pantalla de ajustes abre sin errores").
-4. **Ejecutar las comprobaciones del perfil.** Usa los comandos reales (no inventados). Si un comando falla, inclúyelo tal cual en el informe.
-5. **Probar el caso que antes fallaba.** Reproduce el problema original y confirma que ya no ocurre. Si no puedes reproducirlo, dilo.
+4. **Reproducir el fallo ANTES de cambiar nada.** Si hay un fallo concreto, ejecuta el caso que falla y guarda su salida literal (comando → salida). Si no puedes reproducirlo, dilo y di por qué. No edites ningún archivo antes de este paso.
+5. **Ejecutar las comprobaciones tras el cambio.** Repite el mismo caso del paso 4 y las comprobaciones del perfil con comandos reales (no inventados). Si un comando falla, inclúyelo tal cual en el informe.
 6. **Informar con el formato obligatorio** (ver abajo).
 
 ## Formato obligatorio del informe
 
+Máximo 15 líneas. Estas cinco líneas son obligatorias; añade "Siguiente paso" solo si queda algo pendiente.
+
 ```
 VERIFICACIÓN
-Proyecto: <nombre/tipo>
 Criterio de éxito: <una línea>
-
-Comprobaciones ejecutadas:
-- [OK] <comando o prueba> → <resultado relevante>
-- [FALLO] <comando o prueba> → <error>
-- [NO VERIFICADO] <qué falta y por qué>
-
-Qué leí: <archivos/configs revisados>
-Conclusión: VERIFICADO / PARCIAL / NO VERIFICADO
-Riesgos pendientes: <lista corta o "ninguno conocido">
-Siguiente paso recomendado: <una línea>
+Antes del cambio: <comando> → <salida del fallo>   (o "no reproducible: <por qué>")
+Comprobaciones: [OK] / [FALLO] <comando> → <resultado relevante>   (una línea por comprobación)
+NO VERIFICADO: <qué no pudiste comprobar y por qué>   (o "nada")
+Conclusión: VERIFICADO / PARCIAL / NO VERIFICADO — <alcance en una frase>
 ```
+
+Tarea trivial (cambio de texto, nombre o una línea, sin lógica): basta una comprobación real (leer el archivo o `grep`) y una línea de conclusión; no uses el formato anterior.
+Lo que leíste y los riesgos pendientes van dentro de NO VERIFICADO y de la conclusión, solo si importan.
 
 Reglas del formato:
 - Solo marca VERIFICADO si TODAS las comprobaciones críticas están en OK.
