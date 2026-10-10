@@ -1,6 +1,6 @@
 ---
 name: director
-description: Orquesta para proyectos técnicos con un DIRECTOR y varios INVESTIGADORES que construyen un cuaderno de notas en archivos .md. Úsala SIEMPRE al empezar cualquier tarea de programación, apps (Flutter/Android), Docker, servidores, seguridad del hogar (cámaras, Frigate, Home Assistant, red), automatización o IA. Los investigadores reúnen información fiable con fuentes, incluida toda la relacionada (requisitos de hardware, compatibilidad, alternativas); el director no lo lee todo: consulta el cuaderno con búsquedas precisas, exige que cada acción esté respaldada por una nota y corta cualquier desvío.
+description: Orquesta para proyectos técnicos con un DIRECTOR y varios INVESTIGADORES que construyen un cuaderno de notas en archivos .md. Úsala al empezar cualquier tarea no trivial de programación, apps (Flutter/Android), Docker, servidores, seguridad del hogar (cámaras, Frigate, Home Assistant, red), automatización o IA. Los investigadores reúnen información fiable con fuentes, incluida toda la relacionada (requisitos de hardware, compatibilidad, alternativas); el director no lo lee todo: consulta el cuaderno con búsquedas precisas, exige que cada acción esté respaldada por una nota y corta cualquier desvío.
 ---
 
 # Orquesta: Director + Investigadores + Cuaderno de notas
@@ -95,7 +95,16 @@ Al recibir el primer mensaje:
 4. **Investigación ampliada** (ver abajo) para lo que falta, con investigadores en paralelo.
 5. **Validar las notas** y actualizar el índice.
 6. **Responder** con el plan corto y lo que sigue sin comprobar.
-Si el usuario pide una respuesta rápida, se salta la investigación profunda, se avisa y se marca "sin verificar".
+Si el usuario pide una respuesta rápida, se salta la investigación profunda, se avisa y se marca "sin verificar". Ver «Modo rápido y tareas triviales»: el mínimo de abajo sigue siendo obligatorio.
+
+## Modo rápido y tareas triviales
+- **Tarea trivial** (cambiar un texto, un nombre o una línea; sin datos externos que investigar): no uses el director. Aplica el control de rumbo, haz el cambio y haz una comprobación real.
+- **Modo rápido** (el usuario pide rapidez o la pregunta es acotada): sin cuaderno ni investigadores, pero SIEMPRE con este mínimo:
+  1. Fecha de la consulta al principio.
+  2. Cada afirmación importante con la URL de una página que realmente abriste. Si solo la viste en resultados de búsqueda, escribe "no abierta".
+  3. Un bloque final ESTADO con tres listas: CONFIRMADO, INFERIDO y NO VERIFICADO (lo que no pudiste comprobar). Para poner algo en CONFIRMADO necesitas las tres cosas: (a) la URL de una página que abriste, (b) la fecha de esa fuente y la versión a la que se refiere, (c) que esa versión encaje con la que usa el usuario. Si la fuente es de otra versión, tiene más de 2 años o no tiene fecha, el dato va a INFERIDO con su fecha y la nota "posiblemente desactualizado". Escribe la fecha de cada fuente entre paréntesis junto a su URL. Si no sabes qué versión usa el usuario, dilo en NO VERIFICADO y di qué cambiaría según la versión.
+  4. Precios, stock y versiones con su fecha y la nota "revalidar antes de comprar o instalar".
+  5. Una línea que diga "Sin cuaderno (modo rápido)".
 
 ## Investigación ampliada (mapa de dependencias)
 Para cada tema principal, el director pide que se investigue también todo lo relacionado. Plantilla de subtemas:
