@@ -1,0 +1,3 @@
+# El plugin necesita finales de línea LF: con CRLF (autocrlf en Windows) el frontmatter de SKILL.md no se lee.
+plugin/** text eol=lf
+.claude-plugin/** text eol=lf
