@@ -1,8 +1,10 @@
 {
   "name": "orquesta",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Skills director y verificar en espanol, con hooks que recuerdan usarlas.",
-  "author": { "name": "Sks1785" },
+  "author": {
+    "name": "Sks1785"
+  },
   "homepage": "https://github.com/Sks1785/skills-orquesta",
   "repository": "https://github.com/Sks1785/skills-orquesta",
   "license": "MIT"
