@@ -29,6 +29,25 @@ cp -r es/verificar es/director .claude/skills/
 
 Reinicia la sesión de Claude y comprueba que aparecen `verificar` y `director`.
 
+## Instalar como plugin (español, con recordatorios automáticos)
+
+La carpeta `plugin/` es un plugin de Claude Code llamado `orquesta`. Incluye las skills `director` y `verificar` en español y dos hooks que recuerdan a Claude usarlas: uno al empezar la sesión y otro en cada mensaje. Ya no hace falta escribir `/director` ni `/verificar`. El plugin es **solo en español**; para otros idiomas usa la instalación manual de arriba.
+
+```bash
+claude plugin marketplace add Sks1785/skills-orquesta
+claude plugin install orquesta@skills-orquesta
+```
+
+O dentro de una sesión de Claude Code: `/plugin marketplace add Sks1785/skills-orquesta` y después `/plugin install orquesta@skills-orquesta`. Luego ejecuta `/reload-plugins` o abre una sesión nueva.
+
+Conviene saber:
+- Las skills llevan el prefijo del plugin: `/orquesta:director` y `/orquesta:verificar`.
+- Si ya habías copiado `director` / `verificar` a `~/.claude/skills`, muévelas antes, o tendrás duplicados.
+- Los hooks solo ejecutan un `echo`. En Windows, Claude Code usa Git Bash si está instalado (probado: una línea limpia). Con el PowerShell de reserva el mismo texto sale una palabra por línea, aunque se sigue leyendo.
+- El hook añade un recordatorio corto en cada mensaje (unos pocos tokens cada vez). Para quitarlo, edita o borra `plugin/hooks/hooks.json`. Para desinstalar: `claude plugin uninstall orquesta@skills-orquesta`.
+- `plugin/skills/` es una copia de `es/` (mismo texto; solo cambian los finales de línea). Si cambias una, cambia la otra.
+- Probado en Windows 11 con Claude Code 2.1.278: `claude plugin validate` pasa, los dos hooks saltan y las dos skills se cargan. Solo se ha probado en una tarea real.
+
 ## Uso
 - Empieza una tarea con `/director`, o deja que Claude la active por su descripción.
 - Tras cada cambio importante, `/verificar`.

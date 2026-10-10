@@ -1,0 +1,8 @@
+{
+  "name": "skills-orquesta",
+  "owner": { "name": "Sks1785" },
+  "description": "Skills director y verificar con recordatorio automatico",
+  "plugins": [
+    { "name": "orquesta", "source": "./plugin", "description": "Director + investigadores + verificacion con evidencia" }
+  ]
+}

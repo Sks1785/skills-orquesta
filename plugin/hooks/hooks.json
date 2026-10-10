@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [ { "type": "command", "timeout": 10,
+        "command": "echo REGLA DEL PLUGIN ORQUESTA: en tareas tecnicas como apps, Docker, servidores, camaras, red o IA empieza usando la skill director, que separa director e investigadores y usa el cuaderno conocimiento/. Antes de dar algo por terminado usa la skill verificar y informa con evidencia. Sin evidencia di NO VERIFICADO." } ] }
+    ],
+    "UserPromptSubmit": [
+      { "hooks": [ { "type": "command", "timeout": 10,
+        "command": "echo Recordatorio orquesta: director al planificar o investigar, verificar antes de decir terminado. Sin evidencia es NO VERIFICADO." } ] }
+    ]
+  }
+}
